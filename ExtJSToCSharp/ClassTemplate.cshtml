@@ -1,0 +1,64 @@
+﻿@model JsDuckJsonParser.ClassDefinition
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExtJSToCSharp {
+    public partial class @Model.Name : @Model.Extends {
+        @foreach (var config in @Model.GetMembers(JsDuckJsonParser.MemberTypeEnum.cfg)) {
+            if (config.Owner == @Model.Name && config.Private.GetValueOrDefault(false) == false)
+            {
+                if (config.Default != null) {
+                    <text>
+        @String.Format("private _{0}_default = {1};", config.Name, config.Default)
+                    </text>
+                }
+                var types = config.Type.Split('/');
+                if (types.Count() == 1)
+                {
+                    <text>
+        [JsonIgnore]
+        public @config.Type @config.Name { get { return this.attributes.GetOrDefault<@config.Type>("@config.Name", @config.Default); } set { this.attributes["@config.Name"] = value; } }                
+                    </text>
+                } else if (types.Count() > 1)
+                {
+                    var propTypeName = "MultiType_" + config.Name;
+                    <text>
+        public class @propTypeName {
+            public new Type GetType()
+            {
+                return _value.GetType();
+            }
+
+                        @foreach (var type in types)
+	                    {
+                            var subTypeName = ExtJSToCSharp.ClassTemplateHelper.JavascriptTypeToNetTypeName(type);
+                            <text>
+            public static explicit operator int (@subTypeName m)
+            {
+                if (m._value.GetType() == typeof(int)) return (int)m._value;
+                else return default(int);
+            }
+            public static implicit operator @subTypeName (int m) {
+                return new @subTypeName { _value = m };
+            }
+                            </text>
+	                    }
+
+            private object _value;
+            public object @@object  { get { return _value; } set { _value = value; } }
+            public int @@int { get { return (int) _value; } set { _value = value; } }
+            public string @@function { get { return (string) _value; } set { _value = value; } }
+        }
+
+        [JsonIgnore]
+        public @propTypeName @config.Name { get { return this.attributes.GetOrDefault<@propTypeName>("@config.Name", @config.Default); } set { this.attributes["@config.Name"] = value; } }                
+
+                    </text>
+                }
+            }
+        }
+    }
+}

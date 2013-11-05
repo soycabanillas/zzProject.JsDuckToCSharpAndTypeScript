@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zzProject.JsDuckToCSharpAndTypeScript", "jsonTypescriptConverter\zzProject.JsDuckToCSharpAndTypeScript.csproj", "{8E977716-84E1-4AB2-9005-385773E50D18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zzProject.JsDuckJsonParser", "JsDuckJsonParser\zzProject.JsDuckJsonParser.csproj", "{5FC68A9F-4E8C-48B3-A6BD-0F0EBC24DE0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zzProject.ExtJSToCSharp", "ExtJSToCSharp\zzProject.ExtJSToCSharp.csproj", "{E0EC7FA1-3235-4769-BC95-4024E2A1743C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zzProject.ExtJSToTypeScript", "ExtJSToTypeScript\zzProject.ExtJSToTypeScript.csproj", "{D6F773F5-449B-47A7-B394-A934F6F2A139}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E977716-84E1-4AB2-9005-385773E50D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E977716-84E1-4AB2-9005-385773E50D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E977716-84E1-4AB2-9005-385773E50D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E977716-84E1-4AB2-9005-385773E50D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC68A9F-4E8C-48B3-A6BD-0F0EBC24DE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC68A9F-4E8C-48B3-A6BD-0F0EBC24DE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC68A9F-4E8C-48B3-A6BD-0F0EBC24DE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC68A9F-4E8C-48B3-A6BD-0F0EBC24DE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0EC7FA1-3235-4769-BC95-4024E2A1743C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0EC7FA1-3235-4769-BC95-4024E2A1743C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0EC7FA1-3235-4769-BC95-4024E2A1743C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0EC7FA1-3235-4769-BC95-4024E2A1743C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6F773F5-449B-47A7-B394-A934F6F2A139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F773F5-449B-47A7-B394-A934F6F2A139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F773F5-449B-47A7-B394-A934F6F2A139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6F773F5-449B-47A7-B394-A934F6F2A139}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

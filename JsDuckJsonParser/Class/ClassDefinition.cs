@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JsDuckJsonParser {
+namespace JsDuckJsonParser.Class {
     public class Autodetected {
 
         [JsonProperty("aliases")]
@@ -252,7 +252,7 @@ namespace JsDuckJsonParser {
         public IList<Property3> Properties { get; set; }
     }
 
-    public class Member {
+    public partial class Member {
 
         [JsonProperty("tagname")]
         public string Tagname { get; set; }

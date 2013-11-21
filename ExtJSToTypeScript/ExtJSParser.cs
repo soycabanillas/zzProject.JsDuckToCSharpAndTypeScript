@@ -17,7 +17,7 @@ namespace ExtJSToTypeScript
             this._stream = serializer.Serialize("output.d.ts");
         }
 
-        void JsDuckJsonParser.IJsDuckJsonParser.Parse(JsDuckJsonParser.ClassDefinition classDefinition) {
+        void JsDuckJsonParser.IJsDuckJsonParser.Parse(JsDuckJsonParser.Class.ClassDefinition classDefinition) {
             this.InnerParse(classDefinition);
         }
 
@@ -36,7 +36,7 @@ namespace ExtJSToTypeScript
 
         #region ParserMethods
 
-        private void InnerParse(JsDuckJsonParser.ClassDefinition cd) {
+        private void InnerParse(JsDuckJsonParser.Class.ClassDefinition cd) {
 
             if ((cd.Name == "Array") ||
                (cd.Name == "Boolean") ||
@@ -46,7 +46,7 @@ namespace ExtJSToTypeScript
                (cd.Name == "Object") ||
                (cd.Name == "RegExp") ||
                (cd.Name == "String")) {
-                System.Diagnostics.Debug.Assert(true);
+                return;
                 //return "/* internal JS type: " + xb.Name + "*/";
             }
 

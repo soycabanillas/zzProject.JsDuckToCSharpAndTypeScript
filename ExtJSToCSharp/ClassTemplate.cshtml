@@ -1,28 +1,45 @@
-﻿@model JsDuckJsonParser.ClassDefinition
+﻿@model JsDuckJsonParser.Class.ClassDefinition
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace ExtJSToCSharp {
-    public partial class @Model.Name : @Model.Extends {
-        @foreach (var config in @Model.GetMembers(JsDuckJsonParser.MemberTypeEnum.cfg)) {
+@{
+    zzProject.ExtJSToCSharp.JsToCSharp.JsType typeConverter = new zzProject.ExtJSToCSharp.JsToCSharp.JsType("zzProject.ExtJSNet.ExtJS.Classes");
+    string classNamespace = typeConverter.GetNetTypeNamespace(Model.Name);
+    string className = typeConverter.GetNetTypeName(Model.Name);
+    string extendsClassFullName = null;
+    if (!string.IsNullOrWhiteSpace(Model.Extends))
+    {
+        extendsClassFullName  = typeConverter.GetNetTypeFullName(Model.Extends);
+    }
+}
+namespace @classNamespace {
+    public partial class @className @if (extendsClassFullName != null) { @(": " + extendsClassFullName) } {
+        @foreach (var config in @Model.GetMembers(JsDuckJsonParser.Class.MemberTypeEnum.cfg)) {
             if (config.Owner == @Model.Name && config.Private.GetValueOrDefault(false) == false)
             {
                 if (config.Default != null) {
                     <text>
-        @String.Format("private _{0}_default = {1};", config.Name, config.Default)
+        @String.Format(@"private System.String _{0}_default = ""{1}"";", config.Name, config.Default)
                     </text>
                 }
+                var types2 = config.GetTypes();
                 var types = config.Type.Split('/');
-                if (types.Count() == 1)
+                //if (types.Count() == 1)
+                if (types2.Types.Count() == 1)
                 {
+                    var typeName = @types2.Types[0];
                     <text>
         [JsonIgnore]
-        public @config.Type @config.Name { get { return this.attributes.GetOrDefault<@config.Type>("@config.Name", @config.Default); } set { this.attributes["@config.Name"] = value; } }                
+        public @typeName @config.Name { get { return this.attributes.GetOrDefault<@typeName>("@config.Name"); } set { this.attributes["@config.Name"] = value; } }
+        @*public @typeName @config.Name { get { return this.attributes.GetOrDefault<@config.Type>("@config.Name" @if (!string.IsNullOrWhiteSpace(@config.Default)) { @(", " + @config.Default) }); } set { this.attributes["@config.Name"] = value; } }                *@
                     </text>
-                } else if (types.Count() > 1)
+                } 
+                //else if (types.Count() > 1)
+                else if (false)
                 {
                     var propTypeName = "MultiType_" + config.Name;
                     <text>
@@ -34,15 +51,15 @@ namespace ExtJSToCSharp {
 
                         @foreach (var type in types)
 	                    {
-                            var subTypeName = ExtJSToCSharp.ClassTemplateHelper.JavascriptTypeToNetTypeName(type);
+                            var subTypeName = typeConverter.GetNetTypeFullName(type);
                             <text>
-            public static explicit operator int (@subTypeName m)
+            public static explicit operator @subTypeName (@propTypeName m)
             {
-                if (m._value.GetType() == typeof(int)) return (int)m._value;
-                else return default(int);
+                if (m._value.GetType() == typeof(@subTypeName)) return (@subTypeName)m._value;
+                else return default(@subTypeName);
             }
-            public static implicit operator @subTypeName (int m) {
-                return new @subTypeName { _value = m };
+            public static implicit operator @propTypeName (@subTypeName m) {
+                return new @propTypeName { _value = m };
             }
                             </text>
 	                    }
@@ -54,7 +71,7 @@ namespace ExtJSToCSharp {
         }
 
         [JsonIgnore]
-        public @propTypeName @config.Name { get { return this.attributes.GetOrDefault<@propTypeName>("@config.Name", @config.Default); } set { this.attributes["@config.Name"] = value; } }                
+        public @propTypeName @config.Name { get { return this.attributes.GetOrDefault<@propTypeName>("@config.Name" @if (!string.IsNullOrWhiteSpace(@config.Default)) { @(", " + @config.Default) }); } set { this.attributes["@config.Name"] = value; } }                
 
                     </text>
                 }

@@ -26,7 +26,7 @@ namespace JsDuckJsonParser {
                 Debug.WriteLine(eea.ErrorContext);
             });
 
-            var xb = (ClassDefinition)JsonConvert.DeserializeObject(reader.ReadToEnd(), typeof(ClassDefinition), jss);
+            var xb = (JsDuckJsonParser.Class.ClassDefinition)JsonConvert.DeserializeObject(reader.ReadToEnd(), typeof(JsDuckJsonParser.Class.ClassDefinition), jss);
 
             _classParser.Parse(xb);
         }

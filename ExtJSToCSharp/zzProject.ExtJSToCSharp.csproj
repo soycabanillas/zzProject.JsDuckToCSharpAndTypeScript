@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ClassTemplate.cshtml" />
-    <Compile Include="ClassTemplateHelper.cs" />
+    <Compile Include="ClassGeneratorHelper.cs" />
+    <Compile Include="JsToCSharp\Compiler.cs" />
+    <Compile Include="JsToCSharp\CSharp.cs" />
+    <Compile Include="JsToCSharp\Helpers\TypeAndDefault.cs" />
+    <Compile Include="JsToCSharp\JsType.cs" />
     <Compile Include="ClassTest.cs" />
     <Compile Include="ExtJSParser.cs" />
+    <Compile Include="JsToCSharp\JsValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

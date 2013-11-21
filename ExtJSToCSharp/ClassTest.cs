@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExtJSToCSharp {
+namespace zzProject.ExtJSToCSharp {
     public class MultiType_Weight {
         public new Type GetType()
         {

@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassDefinition.cs" />
-    <Compile Include="ClassDefinitionEx.cs" />
+    <Compile Include="Class\ClassDefinition.cs" />
+    <Compile Include="Class\ClassDefinitionEx.cs" />
+    <Compile Include="Class\Helpers\TypesAndConstants.cs" />
     <Compile Include="IJsDuckJsonParser.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

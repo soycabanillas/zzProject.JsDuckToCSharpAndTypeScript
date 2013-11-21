@@ -51,7 +51,7 @@ namespace jsonTypescriptConverter
                     dialog.ShowNewFolderButton = false;
                     //dialog.RootFolder = Environment.SpecialFolder.MyComputer;
                     //dialog.RootFolder = startupPath;
-                    dialog.SelectedPath = @"D:\Backup\Alex 20120520\ExtJS.Net\Sencha\jsondocs";
+                    dialog.SelectedPath = @"D:\AECB\Projects\zzProject.JsDuckToCSharpAndTypeScript\jsondocs";
                     if (dialog.ShowDialog() == DialogResult.OK) {
                         DirectoryInfo directorySource = new DirectoryInfo(Path.GetFullPath(dialog.SelectedPath));
 
@@ -75,7 +75,7 @@ namespace jsonTypescriptConverter
 
                             Parser.Parse(directorySource,
                                 directoryDestiny,
-                                new ExtJSToCSharp.ExtJSParser(),
+                                new zzProject.ExtJSToCSharp.ExtJSParser(),
                                 (progress) => {
                                     progressBar1.Value = progress.Current;
                                     progressBar1.Maximum = progress.Total;
